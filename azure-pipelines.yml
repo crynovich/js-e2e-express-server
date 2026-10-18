@@ -40,7 +40,7 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - script: |
-        echo "Build staging job..."
+        echo "Build staging job...."
       displayName: 'Build and deploy to staging'
 
   - job: DeployStagingJobWithValidation
