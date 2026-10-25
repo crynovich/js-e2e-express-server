@@ -11,13 +11,20 @@ stages:
   - job: BuildJob
     displayName: 'Build Job'
     steps:
-    - script: |
-        echo "Restoring project dependencies..."
-      displayName: 'Restore dependencies'
-    - script: |
-        echo "Running unit tests..."
-      displayName: 'Run unit tests'
+    - task: NodeTool@0
+      displayName: Use Node.js 22
+      inputs:
+        versionSpec: '22.x'
 
+    - script: npm ci
+      displayName: Install dependencies
+
+    - script: npm run lint
+      displayName: Run ESLint
+
+    - script: npm test
+      displayName: Run Jest tests
+      
 - stage: Test
   displayName: 'Test Stage'
   dependsOn: Build
