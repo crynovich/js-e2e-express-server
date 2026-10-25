@@ -38,7 +38,10 @@ stages:
     - script: npm ci
       displayName: Install dependencies
 
-    - script: npm test
+    - script: |
+        echo "Running tests..."
+        npm test
+        exit 1
       displayName: Run tests
 
   - job: DiagnoseFailure
