@@ -34,8 +34,18 @@ stages:
     displayName: 'Test Job'
     steps:
     - script: |
-        echo "Running unit tests..."
-      displayName: 'Run unit tests'
+        echo "Running tests..."
+        npm test
+      displayName: Run tests
+  - job: DiagnoseFailure
+    displayName: Diagnose test failure
+    dependsOn: TestJob
+    condition: failed()
+    steps:
+    - script: |
+        echo "The test job failed."
+        echo "Investigate the logs from TestJob."
+      displayName: Report test failure
 
 - stage: DeployToStaging
   displayName: 'Deploy to Staging'
