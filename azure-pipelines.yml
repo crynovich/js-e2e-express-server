@@ -7,7 +7,7 @@ pool:
 stages:
 - stage: Build
   displayName: 'Build Stage'
-  jobs:
+  jobs
   - job: BuildJob
     displayName: 'Build Job'
     steps:
@@ -38,10 +38,7 @@ stages:
     - script: npm ci
       displayName: Install dependencies
 
-    - script: |
-        echo "Running tests..."
-        npm test
-        exit 1
+    - script: npm test
       displayName: Run tests
 
   - job: DiagnoseFailure
